@@ -27,8 +27,25 @@ class Player():
     
     
 def main_menu(playerid):
-    print(Player.check_username(playerid), "- Level", Player.check_level(playerid))
-    
+    while True:
+        print("---------------------------")
+        print(Player.check_username(playerid), "- Level", Player.check_level(playerid))
+        print("---------------------------")
+        print("1. My Stats")
+        print("2. My Inventory")
+        print("3. My Stash")
+        print("4. Logout")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            os.system("cls")
+            print("Stats")
+        elif choice == "4":
+            os.system("cls")
+            break
+    print("Account logged out!")
+    logged_out()
+
 
 def create_account():
     os.system("cls")
@@ -49,6 +66,7 @@ def create_account():
     input("Account created! Press Enter to continue...")
     os.system("cls")
     return 
+
 
 def login():
     if len(player) == 0:
@@ -78,8 +96,11 @@ def login():
         else:
             while True:
                 password = input("Enter your password (Enter C to cancel): ")
-                if Player.check_password(playerid) == password:
-                    break
+                if Player.check_password(playerid) == password: 
+                    print("\nYou successfully logged in!")
+                    input("Press Enter to continue...")
+                    os.system("cls")
+                    return playerid
                 elif password == "c" or password == "C":
                     print("Canceled!")
                     input("Press Enter to continue...")
@@ -87,13 +108,10 @@ def login():
                     return
                 else:
                     print("Wrong Password!")
-            os.system("cls")
-            print("---------------------------")
-            input("You successfully logged in!")
-            print("---------------------------")
-            main_menu(playerid)
+
 
 def logged_out():
+    playerid = ""
     while True:
         print("----------------------")
         print("Welcome to Mython RPG!")
@@ -103,15 +121,21 @@ def logged_out():
         print("3. Exit Game")
         choice = input("Enter your choice: ")
         if choice == "1":
-            login()
+            playerid = login()
+            if playerid in player:
+                break
         elif choice == "2":
             create_account()
         elif choice == "3":
-            print("Exiting program...")
+            print("\nExiting program...\n")
             break
         else:
             os.system("cls")
             print("\nError: Invalid input!\n")
+    
+    if playerid in player:
+        main_menu(playerid)
+            
 
-
+# Initialize Program
 logged_out()
