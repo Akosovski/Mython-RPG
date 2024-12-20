@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="container d-flex flex-column" style="height:auto;">
+        
+        <div class="d-flex flex-column justify-content-center mb-4 mt-5">
+            <div class="text-center mb-3">
+                <h3 class=""> {{ account.username }}</h3>
+            </div>
+            <div class="text-center border-bottom border-top pt-1">
+                <h4> Level {{ account.level }}</h4>
+            </div>
+            <div class="text-center border-bottom mt-1">
+                <h4> Coins : {{ account.coins }}</h4>
+            </div>
+            <div class="text-center border-bottom mt-1">
+                <h4> Diamonds : {{ account.diamonds }}</h4>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 mt-3 mb-3 text-center">
+
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3 bg-primary">
+                        <h4 class="my-0 fw-normal text-light">My Stats</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-3">
+                            View and track your character's level, attributes, and statistics.
+                        </p>
+                        <button type="button" class="w-100 btn btn-lg btn-outline-primary"
+                        onclick="window.location.href='{{ url_for('stats') }}'">View Stats</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3 bg-info">
+                        <h4 class="my-0 fw-normal text-light">Inventory</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-3">
+                            Manage your items, gear, and resources collected during your journey.
+                        </p>
+                        <button type="button" class="w-100 btn btn-lg btn-outline-info"
+                        onclick="window.location.href='{{ url_for('inventory') }}'">Manage Inventory</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3 bg-success">
+                    <h4 class="my-0 fw-normal text-light">Shop</h4>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">
+                        Purchase upgrades, weapons, and supplies to enhance your gameplay.
+                    </p>
+                    <button type="button" class="w-100 btn btn-lg btn-outline-success"
+                    onclick="window.location.href='{{ url_for('shop') }}'">Go to Shop</button>
+                </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3 bg-danger">
+                    <h4 class="my-0 fw-normal text-light">Battle</h4>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">
+                    Take on challenging enemies to earn xp and rewards.
+                    </p>
+                    <button type="button" class="w-100 btn btn-lg btn-outline-danger"
+                    onclick="window.location.href='{{ url_for('battle_choice') }}'">Go to Battle</button>
+                </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3 bg-warning">
+                    <h4 class="my-0 fw-normal">Help</h4>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">
+                    Learn more about how to play the game.
+                    </p>
+                    <button type="button" class="w-100 btn btn-lg btn-outline-warning">Go to Help</button>
+                </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3 bg-secondary">
+                    <h4 class="my-0 fw-normal text-light">Quit</h4>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">
+                    Leave the game and logout.
+                    </p>
+                    <button type="button" class="w-100 btn btn-lg btn-outline-secondary"
+                    onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
+                </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

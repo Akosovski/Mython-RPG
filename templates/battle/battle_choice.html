@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include 'components/navbar.html' %}
+
+<div class="album bg-body-tertiary" style="padding-top: 30px;">
+    <div class="container-fluid p-3 p-md-5">
+        <div>
+            <h2 class="pb-3 border-2 border-bottom fw-bold mb-3">Monsters</h2>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% if monsters %}
+            {% for monster in monsters %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4 class="fw-bold">{{ monster.name }}</h4>
+                        <p class="mt-2">Health Points : {{ monster.health_points }}</p>
+                        <p class="mt-0">Weapon : {{ monster.weapon_used }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-body-secondary fs-6">EXP Reward : {{ monster.reward_xp }} </small>
+                            <small class="text-body-secondary fs-6">Coins Reward : ${{ monster.reward_coin }} </small>
+                            <form action="{{ url_for('battle_choice') }}" method="post">
+                                <input type="hidden" name="monster_name" value="{{ monster.name }}">
+                                <button type="submit" class="btn btn-lg btn-outline-danger" style="min-width: 120px;">Fight!</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <div class="text-center my-4">
+                <h4>No Monsters in sight!</h4>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

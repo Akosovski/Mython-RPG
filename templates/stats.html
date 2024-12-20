@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include 'components/navbar.html' %}
+
+<div class="bg-body-tertiary" style="padding-top: 30px;">
+  <div class="container-fluid p-3 p-md-5">
+      <h2 class="pb-3 border-2 border-bottom fw-bold">Character Statistics</h2>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-2">
+
+        <div class="col d-flex align-items-start">
+          <!-- <svg class="bi text-body-secondary flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#bootstrap"/></svg> -->
+          <div>
+            <h3 class="fw-bold mb-2 fs-4 text-body-emphasis pb-2 border-2 border-bottom">Experience</h3>
+            <h6 class="mb-2 fs-5">Total EXP : {{ account.xp }}</h6>
+            <p>
+              Tracks the player's accumulated experience from battles, quests, or other activities.
+              Used for leveling up and improving the player's attributes or unlocking new abilities.
+            </p>
+          </div>
+        </div>
+
+        <div class="col d-flex align-items-start">
+          <!-- <svg class="bi text-body-secondary flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#tools"/></svg> -->
+          <div>
+            <h3 class="fw-bold mb-2 fs-4 text-body-emphasis pb-2 border-2 border-bottom">Upgrade Points</h3>
+            <h6 class="mb-2 fs-5">Amount : {{ account.upgrade_points }}</h6>
+            <p>
+              Accumulated points available for improving the player's attributes.
+              Gained through leveling up or completing specific challenges.
+            </p>
+          </div>
+        </div>
+
+        <div class="col d-flex align-items-start">
+          <!-- <svg class="bi text-body-secondary flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#cpu-fill"/></svg> -->
+          <div>
+            <h3 class="fw-bold mb-2 fs-4 text-body-emphasis pb-2 border-2 border-bottom">Health Points</h3>
+            <h6 class="mb-2 fs-5">Amount : {{ account.health_points }}</h6>
+            <p>
+              Represents the player's overall health or vitality.
+              Decreases when the player takes damage; reaching zero results in defeat.
+              Can be restored by consuming heal items.
+            </p>
+            <button type="button" class="btn btn-lg btn-outline-primary">Upgrade</button>
+          </div>
+        </div>
+
+        <div class="col d-flex align-items-start">
+          <!-- <svg class="bi text-body-secondary flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#calendar3"/></svg> -->
+          <div>
+            <h3 class="fw-bold mb-2 fs-4 text-body-emphasis pb-2 border-2 border-bottom">Mana Points</h3>
+            <h6 class="mb-2 fs-5">Amount : {{ account.mana_points }}</h6>
+            <p>
+              Represents the player's resource for using magical abilities or skills.
+              Decreases when a spell or skill is used and regenerates over time or through items.
+            </p>
+            <button type="button" class="btn btn-lg btn-outline-primary">Upgrade</button>
+          </div>
+        </div>
+
+        <div class="col d-flex align-items-start">
+          <!-- <svg class="bi text-body-secondary flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#home"/></svg> -->
+          <div>
+            <h3 class="fw-bold mb-2 fs-4 text-body-emphasis pb-2 border-2 border-bottom">Evade Chance</h3>
+            <h6 class="mb-2 fs-5">Amount : {{ account.evade_chance }} %</h6>
+            <p>
+              Indicates the player's likelihood (as a percentage) of dodging an enemy's attack.
+              Higher values make it more likely to avoid taking damage.
+            </p>
+            <button type="button" class="btn btn-lg btn-outline-primary">Upgrade</button>
+          </div>
+        </div>
+
+        <div class="col d-flex align-items-start">
+          <!-- <svg class="bi text-body-secondary flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#speedometer2"/></svg> -->
+          <div>
+            <h3 class="fw-bold mb-2 fs-4 text-body-emphasis pb-2 border-2 border-bottom">Strength</h3>
+            <h6 class="mb-2 fs-5">Amount : {{ account.strength }}</h6>
+            <p>
+              Represents the player's physical power. Affects the damage dealt with melee or physical-based attacks.
+              Equipping certain weapon requires additional strength attributes.
+            </p>
+            <button type="button" class="btn btn-lg btn-outline-primary">Upgrade</button>
+          </div>
+        </div>
+
+        <div class="col d-flex align-items-start">
+          <!-- <svg class="bi text-body-secondary flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#toggles2"/></svg> -->
+          <div>
+            <h3 class="fw-bold mb-2 fs-4 text-body-emphasis pb-2 border-2 border-bottom">Intelligence</h3>
+            <h6 class="mb-2 fs-5">Amount : {{ account.intelligence }}</h6>
+            <p>
+              Represents the player's mental or magical capability.
+              Affects the effectiveness and power of magical skills and spells.
+              Using certain item requires additional intelligence attributes.
+            </p>
+            <button type="button" class="btn btn-lg btn-outline-primary">Upgrade</button>
+          </div>
+        </div>
+
+        <div class="col d-flex align-items-start">
+          <!-- <svg class="bi text-body-secondary flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#geo-fill"/></svg> -->
+          <div>
+            <h3 class="fw-bold mb-2 fs-4 text-body-emphasis pb-2 border-2 border-bottom">Endurance</h3>
+            <h6 class="mb-2 fs-5">Amount : {{ account.endurance }}</h6>
+            <p>
+              Represents the player's physical resilience to debuff attacks.
+              Affects the player's ability resist certain effects or skill attacks.
+              Higher value provides chance of recovering debuffs.
+            </p>
+            <button type="button" class="btn btn-lg btn-outline-primary">Upgrade</button>
+          </div>
+        </div>
+
+      </div>
+  </div>
+</div>
+{% endblock %}

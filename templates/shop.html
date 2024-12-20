@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include 'components/navbar.html' %}
+
+<div class="album bg-body-tertiary" style="padding-top: 30px;">
+    <div class="container-fluid p-3 p-md-5">
+        <div>
+            <h2 class="pb-3 border-2 border-bottom fw-bold mb-3">Shop</h2>
+        </div>
+
+        <div class="box d-flex justify-content-center">
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="alert alert-info">
+                  {{ messages[0] }}</a>
+                </div>
+              {% endif %}
+            {% endwith %}
+        </div>
+
+        {% if weapons %}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for weapon in weapons %}
+                {% if weapon.item_buy_price > 0 %}
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h4 class="fw-bold">{{ weapon.item_name }}</h4>
+                                <p class="mt-2">Base Damage : {{ weapon.damage }}</p>
+                                <p class="mt-0">Critical : {{ weapon.crit_chance}}%</p>
+                                <p class="mt-0">{{ weapon.item_description }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <form method="POST" action="{{ url_for('shop') }}">
+                                        <input type="hidden" name="weapon_id" value="{{ weapon.id }}">
+                                        <button type="submit" class="btn btn-lg btn-outline-dark" 
+                                                style="min-width: 80px;" 
+                                                {% if user_account.coins < weapon.item_buy_price %} disabled {% endif %}>
+                                                Purchase - ${{ weapon.item_buy_price }}
+                                        </button>
+                                        {% if user_account.coins < weapon.item_buy_price %}
+                                            <div>
+                                                <p class="mt-2 text-danger">Not enough coins!</p>
+                                            </div>
+                                        {% endif %}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% else %}
+            <div class="text-center my-4">
+                <h4>Shop is Currently Empty!</h4>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

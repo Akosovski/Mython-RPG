@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container text-center mt-5">
+    {% if result == "win" %}
+
+        <h1>Victory!</h1>
+        <h4>Congratulations! You have defeated the {{ monster.name }}.</h4>
+        <p>Rewards:</p>
+        <ul class="list-unstyled">
+            <li><strong>Coins :</strong> {{ monster.reward_coin }}</li>
+            <li><strong>XP :</strong> {{ monster.reward_xp }}</li>
+            {% if monster.reward_diamond > 0 %}
+                <li><strong>Diamonds :</strong> {{ monster.reward_diamond }}</li>
+            {% endif %}
+        </ul>
+        <p>Your total Coins : {{ account.coins }}</p>
+        <p>Your total XP : {{ account.xp }}</p>
+        {% if monster.reward_diamond > 0 %}
+            <p>Your total Diamonds : {{ account.diamonds }}</p>
+        {% endif %}
+
+    {% elif result == "lose" %}
+
+        <h1>Defeat!</h1>
+        <h4>You were defeated by the {{ monster.name }}. Better luck next time!</h4>
+
+    {% else %}
+
+        <h1>Error!</h1>
+        <p>An unexpected error occurred, Please refresh the page.</p>
+
+    {% endif %}
+
+    <a href="{{ url_for('main_menu') }}" class="btn btn-outline-primary btn-lg mt-3">Return to Main Menu</a>
+</div>
+
+{% endblock %}

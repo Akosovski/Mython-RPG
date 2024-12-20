@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include 'components/navbar.html' %}
+
+<div class="album bg-body-tertiary" style="padding-top: 30px;">
+    <div class="container-fluid p-3 p-md-5">
+        <div>
+            <h2 class="pb-3 border-2 border-bottom fw-bold mb-3">Inventory</h2>
+        </div>
+
+        <div class="box d-flex justify-content-center">
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="alert alert-info">
+                  {{ messages[0] }}</a>
+                </div>
+              {% endif %}
+            {% endwith %}
+        </div>
+
+        {% if inventory_items %}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for item in inventory_items %}
+                {% if item.quantity > 0 %}
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h4 class="fw-bold">{{ item.item_name }}</h4>
+                                <p class="card-text">{{ (item.item_type).title() }}</p>
+                                <p class="card-text">{{ item.item_description }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <form action="{{ url_for('sell_item', item_id=item.id) }}" method="POST" style="display:inline;">
+                                        <button type="submit" class="btn btn-lg btn-outline-dark" style="min-width: 80px;">Sell - ${{ item.item_value }}</button>
+                                    </form>
+                                    <p class="text-body-secondary fs-6">Quantity : {{ item.quantity }} </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% else %}
+            <div class="text-center my-4">
+                <h4>Inventory is Empty!</h4>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

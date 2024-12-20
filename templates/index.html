@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="px-4 pt-5 text-center" style="margin-top: 20vh;">
+
+    {% if current_user.is_authenticated %}
+        <h3> Hi! Welcome Back to </h3>
+    {% elif not current_user.is_authenticated %}
+        <h3> Hello There! Welcome to </h3>
+    {% endif %}
+    <h1 class="display-4 fw-bold text-body-emphasis mb-2">Javier's RPG Game</h1>
+
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">
+            Embark on an epic journey in a thrilling RPG where every decision matters. 
+            Step into the shoes of a brave adventurer, forging your path in a vast and immersive world. 
+            Battle fierce monsters, explore ancient ruins, and uncover hidden treasures as you grow stronger 
+            through experience and skill.
+        </p>
+
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-4 border-top pt-4">
+
+            {% if current_user.is_authenticated %}
+
+                <button type="button" class="btn btn-outline-success btn-lg fw-bold mt-1" style="min-width: 250px;"
+                onclick="window.location.href='{{ url_for('main_menu') }}'">Play</button>
+
+            {% elif not current_user.is_authenticated %}
+
+                <button type="button" class="btn btn-outline-info btn-lg mt-1" style="min-width: 250px;"
+                onclick="window.location.href='{{ url_for('login') }}'">Login</button>
+
+                <button type="button" class="btn btn-outline-primary btn-lg mt-1" style="min-width: 250px;"
+                onclick="window.location.href='{{ url_for('signup') }}'">Sign Up</button>
+
+            {% endif %}
+            
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

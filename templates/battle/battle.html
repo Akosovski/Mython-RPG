@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="container py-4">
+    <h1 class="text-center">Battle Arena</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Your Stats</h4>
+            <p><strong>HP:</strong> {{ player_hp }}</p>
+            <div class="progress">
+                <div 
+                    class="progress-bar bg-success" 
+                    role="progressbar" 
+                    style="width: {{ (player_hp / max_player_hp) * 100 }}%;" 
+                    aria-valuenow="{{ player_hp }}" 
+                    aria-valuemin="0" 
+                    aria-valuemax="{{ max_player_hp }}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h4>Monster Stats</h4>
+            <p><strong>HP:</strong> {{ monster_hp }}</p>
+            <div class="progress">
+                <div 
+                    class="progress-bar bg-danger" 
+                    role="progressbar" 
+                    style="width: {{ (monster_hp / max_monster_hp) * 100 }}%;" 
+                    aria-valuenow="{{ monster_hp }}" 
+                    aria-valuemin="0" 
+                    aria-valuemax="{{ max_monster_hp }}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    {% if player_hp > 0 and monster_hp > 0 %}
+    <div class="text-center">
+        <form method="post">
+            <button class="btn btn-primary" name="action" value="attack">Attack</button>
+            <button class="btn btn-secondary" name="action" value="defend">Defend</button>
+        </form>
+    </div>
+    {% else %}
+    <div class="text-center">
+        <h1>Battle Over!</h1>
+    </div>
+    {% endif %}
+
+    <div class="mt-4">
+        <h4>Battle Log</h4>
+        <div class="border p-3 bg-light text-dark" style="max-height: 300px; overflow-y: auto; font-family: monospace;">
+            {% for log in battle_log %}
+                <p>{{ log }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <form action="{{ url_for('battle_finished') }}" method="post">
+            <input type="hidden" name="monster_name" value="{{ "Fire Dragon" }}">
+            <input type="hidden" name="user_hp" value="{{ user_hp }}">
+            <input type="hidden" name="monster_hp" value="{{ monster_hp }}">
+            <button type="submit" class="btn btn-success btn-lg">Leave Battle</button>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

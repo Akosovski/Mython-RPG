@@ -1,0 +1,11 @@
+<div class="container-fluid border-bottom border-2">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a onclick="window.location.href='{{ url_for('main_menu') }}'" style="cursor: pointer;" class="nav-link fs-5 text-black">Menu</a></li>
+        <li class="nav-item"><a onclick="window.location.href='{{ url_for('stats') }}'" style="cursor: pointer;" class="nav-link fs-5 text-primary">Stats</a></li>
+        <li class="nav-item"><a onclick="window.location.href='{{ url_for('inventory') }}'" style="cursor: pointer;" class="nav-link fs-5 text-info">Inventory</a></li>
+        <li class="nav-item"><a onclick="window.location.href='{{ url_for('shop') }}'" style="cursor: pointer;" class="nav-link fs-5 text-success">Shop</a></li>
+        <li class="nav-item"><a style="cursor: pointer;" class="nav-link fs-5 text-warning">Help</a></li>
+      </ul>
+    </header>
+  </div>
